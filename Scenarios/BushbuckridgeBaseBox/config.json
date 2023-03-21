@@ -1,0 +1,96 @@
+{
+  "globals": {
+    "deltaT": 1,
+    "deltaTUnit": "seconds",
+    "startTime": "2018-01-01T06:00:00.000Z",
+    "endTime": "2018-01-01T08:00:00.000Z",
+    "options": {
+      "numberFormat": "G"
+    },
+    "console" : true
+  },
+  "layers": [
+    {
+      "name": "RasterPrecipitationLayer",
+      "file": "resources/prec_2018.zip"
+    },
+    {
+      "name": "RasterTemperatureMaxLayer",
+      "file": "resources/temp_max_2010-18.zip"
+    },
+    {
+      "name": "RasterTemperatureMinLayer",
+      "file": "resources/temp_min_2010-18.zip"
+    },
+    {
+      "name": "RasterVegetationLayer",
+      "file": "resources/bushbuckridge_vegetation_2018.asc"
+    },
+    {
+      "name": "VectorWaterLayer",
+      "file": "resources/bushbuckridge_waterways.geojson"
+    },
+    {
+      "name": "VectorAirportsLayer",
+      "file": "resources/bushbuckridge_airports.geojson"
+    },
+    {
+      "name": "VectorPoiLayer",
+      "file": "resources/bushbuckridge_amenities.geojson"
+    },
+    {
+      "name": "VectorLandfillLayer",
+      "file": "resources/bushbuckridge_landfill.geojson"
+    },
+    {
+      "name": "CarParkingLayer",
+      "file": "resources/bushbuckridge_car_parking.geojson"
+    },
+    {
+      "name": "SpatialGraphMediatorLayer",
+      "inputs": [
+        {
+          "file": "resources/bushbuckridge_drive_graph.geojson",
+          "inputConfiguration": {
+            "modalities": ["CarDriving"],
+            "isBidirectedGraph": true
+          }
+        },
+        {
+          "file": "resources/bushbuckridge_walk_graph.geojson",
+          "inputConfiguration": {
+            "modalities": ["Walking"],
+            "isBidirectedGraph": true
+          }
+        }
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "name": "Resident",
+      "file": "resources/residentInit1k.csv",
+      "outputs": [
+        {
+          "kind": "trips",
+          "outputConfiguration": {
+            "tripsFields": [
+              "ActiveCapability"
+            ]
+          }
+        },
+        {
+          "kind": "csv"
+        }
+      ],
+      "count": 40,
+      "individual": [
+        {"value": true, "parameter": "ResultTrajectoryEnabled"},
+        {"value": true, "parameter": "CapabilityDriving"}
+        ]
+    }
+  ],
+  "entities": [
+    {"name": "Car", "file": "resources/car.csv"}
+  ]
+}

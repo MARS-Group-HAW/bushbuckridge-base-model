@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>BushbuckridgeBaseBox</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="resources" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Models\BushbuckridgeBase\BushbuckridgeBase.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="config.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <Content Include="resources\*.*">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Mars.Life.Simulations" Version="4.5.2" />
+      <PackageReference Include="Mars.Life.SOH" Version="4.5.2" />
+    </ItemGroup>
+
+</Project>
