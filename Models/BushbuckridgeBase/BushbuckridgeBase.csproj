@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Layers" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Mars.Life.Simulations" Version="4.5.2" />
+      <PackageReference Include="Mars.Life.SOH" Version="4.5.2" />
+    </ItemGroup>
+
+</Project>
