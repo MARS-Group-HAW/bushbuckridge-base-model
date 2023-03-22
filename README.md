@@ -63,7 +63,7 @@ Upon executing the model (see [Usage](#usage)), the model is built and run. The 
 
 Parts of the environment can be visualized in kepler.gl as well. For example, in the following screenshot, the vehicle travel network (yellow), the airport locations (green), and the are visualized.
 
-![Screenshot of BBR Municipality](https://github.com/MARS-Group-HAW/model-bbr-base/docs/bbr_municipality.png)
+![Screenshot of BBR Municipality](https://github.com/MARS-Group-HAW/model-bbr-base/docs/bbr_screenshot.png)
 
 ## Literature
 
