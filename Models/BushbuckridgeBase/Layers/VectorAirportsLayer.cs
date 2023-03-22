@@ -2,21 +2,20 @@
 using Mars.Components.Layers;
 using Mars.Interfaces.Environments;
 
-namespace BushbuckridgeBase.Layers
+namespace BushbuckridgeBase.Layers;
+
+/// <summary>
+/// A vector layer that holds Airport features.
+/// </summary>
+public class VectorAirportsLayer : VectorLayer<Airport>
 {
     /// <summary>
-    /// A vector layer that holds Airport features.
+    /// Returns the Airport that is nearest to the given position.
     /// </summary>
-    public class VectorAirportsLayer : VectorLayer<Airport>
+    /// <param name="position">The given position</param>
+    /// <returns>The identified airport</returns>
+    public Airport Nearest(Position position)
     {
-        /// <summary>
-        /// Returns the Airport that is nearest to the given position.
-        /// </summary>
-        /// <param name="position">The given position</param>
-        /// <returns>The identified airport</returns>
-        public Airport Nearest(Position position)
-        {
-            return Nearest(position.PositionArray);
-        }
+        return Nearest(position.PositionArray);
     }
 }
