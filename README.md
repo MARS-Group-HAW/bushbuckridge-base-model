@@ -1,14 +1,69 @@
 # Bushbuckridge Base Model
 
-A MARS base model set in the Bushbuckridge municipality of South Africa, showing how agents access and interact with different part of the environment (layer types).
+A MARS base model set in the Bushbuckridge (BBR) municipality of South Africa, showing how agents access and interact with different part of the environment (layer types).
 
 ## Usage
 
-To-do
+Follow these steps to set up the model on your local machine:
+
+1. Clone this GitHub repository.
+2. Open the file BushbuckridgeBase.sln in [JetBrains Rider](https://www.jetbrains.com/rider/).
+3. Run the model by clicking the Play button at the top right in Rider.
+4. Simulation results will be placed in the compilation directory of the model. See [Model Outputs and Results](#model-outputs-and-results) for more details.
 
 ## Model Description
 
-To-do
+The model consists of the following environment components and agent type.
+
+### Environment
+
+The environment is made up of a set of georeferenced layers and features, each of which represents a part of the BBR municipality.
+
+- `RasterPrecipitationLayer`: A raster-based time series layer that holds precipitation data per month in 2018.
+- `RasterTemperatureMaxLayer`: A raster-based time series layer that holds *maximum* temperatures per month in 2010&mdash;2018.
+- `RasterTemperatureMinLayer`: A raster-based time series layer that holds *minimum* temperatures per month in 2010&mdash;2018.
+- `RasterVegetationLayer`: A raster layer that holds vegetation data for 2018.
+- `ResidentLayer`: An abstract layer responsible for initializing and managing `Resident` agents during the simulation.
+- `VectorAirportsLayer`: A vector layer holding `Airport` features.
+  - `Airport`: A point feature representing an airport.
+- `VectorLandfillLayer`: A vector layer holding landfill features.
+- `VectorPoiLayer`: A vector layer holding various vector-based points of interest (POIs).
+- `VectorWaterLayer`: A vector layer holding `River` features.
+  - `River`: A line feature representing a river.
+- `SpatialGraphMediatorLayer`: A vector layer that holds a travel network for pedestrian and vehicle travel.
+- `CarParkingLayer`: A vector layer holding parking spaces for vehicles.
+
+### Agent Type
+
+- `Resident`: This agent type represents a resident of the BBR municipality. It can pursue different activities, which require trips on foot or by car on the BBR traffic network.
+  - Three activities are modeled:
+    - airport: The `Resident` makes a one-way trip from its current location to the nearest `Airport`.
+    - river: The `Resident` makes a one-way trip from its current location to a `River`.
+    - picnic: The `Resident` makes a roundtrip from its current location to a random location for a picnic activity.
+  - `PicnicState`: An enumeration of states (`AtHome`, `GoingToPlace`, `ArrivedAtPlace`, and `ReturningHome`) that a `Resident` can be in while engaged in a picnic activity.
+
+## Model Configuration
+
+The JSON file config.json enables external configuration of the model's layers and agents. Additional files required for model initialization are located in the directory [resources](./Scenarios/BushbuckridgeBaseBox/resources).
+
+### Layers
+
+In the file config.json, a file with pertinent data can be specified for each layer. For example, the layer `WaterVectorLayer` is initialized with a GeoJSON file bushbuckridge_waterways.geojson. This file holds line features representing rivers. These line features are mapped to `River` instances that are held by `WaterVectorLayer` and accessible to the `Resident` agents.
+
+### Agents
+
+In the file config.json, the number of agent instances of the agent type `Resident` can be specified. Furthermore, some initial attribute values of the agent instances can be specified in a CSV file.
+
+## Model Outputs and Results
+
+Upon executing the model (see [Usage](#usage)), the model is built and run. The following simulation results are stored in the build directory.
+
+- Resident.csv: A CSV file that lists the attributes values of each `Resident` agent at each simulations step (tick).
+- Resident_trips.geojson: A GeoJSON file that contains trip data of each `Resident` agent at each tick. The data are formatted such that the trips can be visualized over time with the browser-based data visualization tool [kepler.gl](https://kepler.gl).
+
+Parts of the environment can be visualized in kepler.gl as well. For example, in the following screenshot, the vehicle travel network (yellow), the airport locations (green), and the are visualized.
+
+![Screenshot of BBR Municipality](https://github.com/MARS-Group-HAW/model-bbr-base/docs/bbr_municipality.png)
 
 ## Literature
 
@@ -16,5 +71,7 @@ Lenfers, U.A., Ahmady-Moghaddam, N., Glake, D., Ocker, F., Weyl, J., Clemen, T.,
 
 Lenfers, U.A., Weyl, J., Clemen, T., 2018. Firewood collection in South Africa: Adaptive behavior in social-ecological models. Land 7, 97. <https://doi.org/10.3390/land7030097>
 
-Because of the file size limits we cannot longer provide model box deployments for different architectures.
-Please contact [thomas.clemen@haw-hamburg.de](mailto:thomas.clemen@haw-hamburg.de) in order to receive a download link.
+## Availability Disclaimer
+
+Because of file size limits, we can no longer provide model box deployments for different architectures.
+Please contact [thomas.clemen@haw-hamburg.de](mailto:thomas.clemen@haw-hamburg.de) to receive a download link.
