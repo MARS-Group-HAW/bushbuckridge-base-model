@@ -3,7 +3,9 @@ using Mars.Components.Layers;
 
 namespace BushbuckridgeBase.Layers
 {
-    // The VectorAirportLayer hods a set of Rivers objects that agents can query and interact with.
+    /// <summary>
+    /// A vector layer that holds River features. 
+    /// </summary>
     public class VectorWaterLayer : VectorLayer<River>
     {
     }

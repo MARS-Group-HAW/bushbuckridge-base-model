@@ -5,19 +5,26 @@ using Mars.Interfaces.Layers;
 
 namespace BushbuckridgeBase.Agents
 {
+    /// <summary>
+    /// This class represents a river on the river vector layer.
+    /// </summary>
     public class River : IVectorFeature
     {
+        /// <summary>
+        /// The pair of geocoordinates that represents the position of the river.
+        /// </summary>
         public Position Position { get; private set; }
 
         /// <summary>
-        ///     river's name (obtained from geospatial external data (see above)
+        /// The name of the river, obtained from geospatial external data).
         /// </summary>
         public string Name { get; set; }
 
         public VectorStructuredData VectorStructured { get; set; }
 
         /// <summary>
-        ///     Initialize the river object with an input data object
+        /// The initialization method of the River, used to obtain the position and name of the river from external
+        /// data.
         /// </summary>
         /// <param name="layer">The managing layer</param>
         /// <param name="data">The external data object</param>

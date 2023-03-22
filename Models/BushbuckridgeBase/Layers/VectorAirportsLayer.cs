@@ -4,10 +4,16 @@ using Mars.Interfaces.Environments;
 
 namespace BushbuckridgeBase.Layers
 {
-    // The VectorAirportLayer hods a set of Airport objects that agents can query and interact with.
+    /// <summary>
+    /// A vector layer that holds Airport features.
+    /// </summary>
     public class VectorAirportsLayer : VectorLayer<Airport>
     {
-        // This method enables an agent to query the layer to locate the airport that is closest to its position.
+        /// <summary>
+        /// Returns the Airport that is nearest to the given position.
+        /// </summary>
+        /// <param name="position">The given position</param>
+        /// <returns>The identified airport</returns>
         public Airport Nearest(Position position)
         {
             return Nearest(position.PositionArray);

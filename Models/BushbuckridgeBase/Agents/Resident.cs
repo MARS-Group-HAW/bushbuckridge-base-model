@@ -7,20 +7,23 @@ using SOHMultimodalModel.Model;
 
 namespace BushbuckridgeBase.Agents
 {
-    // The agent type Resident is a resident of the Bushbuckridge municipality that can pursue different activities
-    // during the simulation. It inherits its multi-capable abilities (being able to travel on foot and by drive) from
-    // the MultiCapableAgent.
-    // The agent's structure consists of an Init method, a Tick method, and several properties (attributes).
+    /// <summary>
+    /// The agent type Resident is a resident of the Bushbuckridge municipality that can pursue different activities
+    /// during the simulation. It inherits its multi-capable abilities (being able to travel on foot and by drive) from
+    /// the MultiCapableAgent.
+    /// The agent consists of an Init method, a Tick method, and several properties (attributes).
+    /// </summary>
     public class Resident : MultiCapableAgent<ResidentLayer>
     {
+        #region Fields and Properties
+
         // **********************************
         // General properties for agents:
         // **********************************
 
-        // Stores agent's current activity state (this property is relevant for "picnicking" agents only)
-        public Enum State { get; set; }
-
-        // An agent's planned activity (obtained from agent initialization file)
+        /// <summary>
+        /// The agent's planned activity (obtained from agent initialization file).
+        /// </summary>
         [PropertyDescription(Name = "activity")]
         public string Activity { get; set; }
 
@@ -28,44 +31,79 @@ namespace BushbuckridgeBase.Agents
         // Properties for picnicking agents:
         // **********************************
 
-        // An agent's arrival time at its picnic location (this property is relevant for "picnicking" agents only)
+        /// <summary>
+        /// Stores the agent's current activity state (this property is relevant for "picnicking" agents only).
+        /// </summary>
+        public Enum State { get; set; }
+        
+        /// <summary>
+        /// The agent's arrival time at its picnic location (this property is relevant for "picnicking" agents only).
+        /// </summary>
         public DateTime ArrivalTime { get; set; }
 
-        // An agent's picnic duration is obtained from an agent initialization file (at the beginning of the
-        // simulation) and is stored in PicnicDuration.
+        /// <summary>
+        /// The agent's picnic duration is obtained from an agent initialization file (at the beginning of the
+        /// simulation) and is stored in PicnicDuration.
+        /// </summary>
         [PropertyDescription(Name = "picnicDuration")]
         public int PicnicDuration { get; set; }
         
+        /// <summary>
+        /// The maximum distance in meters that the agent is willing to travel (this property is relevant for
+        /// "picnicking" agents only).
+        /// </summary>
         [PropertyDescription(Name = "maxTravelDistanceInMeters")]
         public int MaxTravelDistanceInMeters { get; set; }
 
-        // An agent's departure time from its picnic location (this property is relevant for "picnicking" agents only)
+        /// <summary>
+        /// The agent's departure time from its picnic location (this property is relevant for "picnicking" agents
+        /// only).
+        /// </summary>
         public DateTime DepartureTime { get; set; }
 
         // **********************************
         // Layer references:
         // **********************************
 
-        // An agent's reference to the resident layer on which it resides (obtained from configuration files)
+        /// <summary>
+        /// The agent's reference to the resident layer on which it resides (obtained from configuration files).
+        /// </summary>
         [PropertyDescription] public ResidentLayer ResidentLayer { get; set; }
 
-        // An agent's reference to the local precipitation rate (obtained from configuration files)
+        /// <summary>
+        /// The agent's reference to the local precipitation rate (obtained from configuration files).
+        /// </summary>
         [PropertyDescription] public RasterPrecipitationLayer RasterPrecipitationLayer { get; set; }
 
-        // An agent's reference to the region's waterways (obtained from configuration files)
+        /// <summary>
+        /// The agent's reference to the region's waterways (obtained from configuration files).
+        /// </summary>
         [PropertyDescription] public VectorWaterLayer VectorWaterLayer { get; set; }
 
-        // An agent's reference to the region's airports (obtained from configuration files)
+        /// <summary>
+        /// The agent's reference to the region's airports (obtained from configuration files).
+        /// </summary>
         [PropertyDescription] public VectorAirportsLayer VectorAirportsLayer { get; set; }
 
-        // An agent's reference to the local minimum temperature (obtained from configuration files)
+        /// <summary>
+        /// The agent's reference to the local minimum temperature (obtained from configuration files).
+        /// </summary>
         [PropertyDescription] public RasterTemperatureMinLayer RasterTemperatureMinLayer { get; set; }
         
-        // An agent's reference to the local maximum temperature (obtained from configuration files)
+        /// <summary>
+        /// The agent's reference to the local maximum temperature (obtained from configuration files).
+        /// </summary>
         [PropertyDescription] public RasterTemperatureMaxLayer RasterTemperatureMaxLayer { get; set; }
+        
+        #endregion
 
-        // An agent's Init method is used to initialize the agent and equip it with all values and information
-        // that it requires at the start of the simulation.
+        #region Initialization
+
+        /// <summary>
+        /// The agent's Init method is used to initialize the agent and equip it with all values and information that
+        /// it requires at the start of the simulation.
+        /// </summary>
+        /// <param name="residentLayer"></param>
         public override void Init(ResidentLayer residentLayer)
         {
             // store reference to residentLayer in public property
@@ -149,9 +187,15 @@ namespace BushbuckridgeBase.Agents
                 }
             }
         }
+        
+        #endregion
 
-        // An agent's Tick method contains the behavioral routine that the agent carries out during each time step
-        // of the simulation.
+        #region Tick
+
+        /// <summary>
+        /// An agent's Tick method contains the behavioral routine that the agent carries out during each time step
+        /// of the simulation.
+        /// </summary>
         public override void Tick()
         {
             // If current goal has not yet been reached, do the following:
@@ -196,5 +240,7 @@ namespace BushbuckridgeBase.Agents
                 }
             }
         }
+        
+        #endregion
     }
 }
