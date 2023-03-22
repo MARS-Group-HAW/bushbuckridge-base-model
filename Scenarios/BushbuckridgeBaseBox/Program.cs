@@ -36,7 +36,6 @@ namespace BushbuckridgeBaseBox
             description.AddLayer<VectorAirportsLayer>();
             description.AddLayer<VectorPoiLayer>();
             description.AddLayer<VectorLandfillLayer>();
-            description.AddLayer<VectorCarLayer>();
             description.AddLayer<CarParkingLayer>();
             description.AddLayer<ResidentLayer>();
 
