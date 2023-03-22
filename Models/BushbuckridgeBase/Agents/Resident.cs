@@ -87,7 +87,7 @@ namespace BushbuckridgeBase.Agents
             // 2. Set its location as your goal position.
             // 3. Plan a multimodal route from your start position to the goal position.
             // Technical aspects: interaction with a vector layer (VectorAirportsLayer) to find nearest node
-            if (Activity == "_airport")
+            if (Activity == "airport")
             {
                 var nearestAirport = VectorAirportsLayer.Nearest(Position);
                 var goalPosition = nearestAirport.Position;
@@ -103,7 +103,7 @@ namespace BushbuckridgeBase.Agents
             // 3. Plan a multimodal route from your start position to the goal position.
             // Technical aspects: retrieved a vector feature (River) from a vector layer (VectorWaterLayer)
             // which has a specific property (name == "Sand River")
-            else if (Activity == "_river")
+            else if (Activity == "river")
             {
                 foreach (var river in VectorWaterLayer.Features.OfType<River>())
                     if (river.Name == "Sand River")
@@ -140,12 +140,12 @@ namespace BushbuckridgeBase.Agents
                     }
                     else
                     {
-                        State = PicnicState.Home;
+                        State = PicnicState.AtHome;
                     }
                 }
                 else
                 {
-                    State = PicnicState.Home;
+                    State = PicnicState.AtHome;
                 }
             }
         }
@@ -174,25 +174,25 @@ namespace BushbuckridgeBase.Agents
                         // Agent has arrived. Change "State" to "Arrived" and set arrival time (time at which agent
                         // begins picnicking) and departure time (time at which agent stops picking and starts going
                         // home).
-                        State = PicnicState.Arrived;
+                        State = PicnicState.ArrivedAtPlace;
                         ArrivalTime = ResidentLayer.Context.CurrentTimePoint.GetValueOrDefault();
                         DepartureTime = ArrivalTime.AddMinutes(PicnicDuration);
                     }
                     // If agent is already at picnic location, check if it is time to go home.
-                    else if (State.Equals(PicnicState.Arrived) && DepartureTime
+                    else if (State.Equals(PicnicState.ArrivedAtPlace) && DepartureTime
                         .Subtract(ResidentLayer.Context.CurrentTimePoint.GetValueOrDefault())
                         .Minutes == 0)
                     {
                         // It is time to go home. Set "State" to "GoingToHome" and plan a multimodal trip from current
                         // position to home.
-                        State = PicnicState.GoingToHome;
+                        State = PicnicState.ReturningHome;
                         var goalPosition = StartPosition;
                         MultimodalRoute = ResidentLayer.RouteFinder.Search(
                             this, Position, goalPosition, Capabilities);
                     }
 
                     // Check if agent has arrived at home.
-                    if (Position.Equals(StartPosition)) State = PicnicState.Home;
+                    if (Position.Equals(StartPosition)) State = PicnicState.AtHome;
                 }
             }
         }

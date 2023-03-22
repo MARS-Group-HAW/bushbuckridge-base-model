@@ -2,9 +2,9 @@
 {
     public enum PicnicState
     {
-        Home,
+        AtHome,
         GoingToPlace,
-        Arrived,
-        GoingToHome
+        ArrivedAtPlace,
+        ReturningHome
     }
 }
