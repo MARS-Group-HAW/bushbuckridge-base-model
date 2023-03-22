@@ -61,9 +61,9 @@ Upon executing the model (see [Usage](#usage)), the model is built and run. The 
 - Resident.csv: A CSV file that lists the attributes values of each `Resident` agent at each simulations step (tick).
 - Resident_trips.geojson: A GeoJSON file that contains trip data of each `Resident` agent at each tick. The data are formatted such that the trips can be visualized over time with the browser-based data visualization tool [kepler.gl](https://kepler.gl).
 
-Parts of the environment can be visualized in kepler.gl as well. For example, in the following screenshot, the vehicle travel network (yellow), the airport locations (green), and the are visualized.
+Parts of the environment can be visualized in kepler.gl as well. For example, in the following screenshot, the vehicle travel network (yellow), the airport locations (green), and the rivers (purple) are visualized.
 
-![Screenshot of BBR Municipality](https://github.com/MARS-Group-HAW/model-bbr-base/docs/bbr_screenshot.png)
+![Screenshot of BBR Municipality](https://github.com/MARS-Group-HAW/model-bbr-base/blob/main/docs/bbr_screenshot.png "Screenshot of the BBR Municipality showing the vehicle travel network, airport locations, and rivers")
 
 ## Literature
 
