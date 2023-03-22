@@ -27,14 +27,14 @@ The environment is made up of a set of layer types and features, each representi
 - `RasterTemperatureMinLayer`: A raster-based time series layer that holds *minimum* temperatures per month in 2010&mdash;2018.
 - `RasterVegetationLayer`: A raster layer that holds vegetation data for 2018.
 - `ResidentLayer`: An abstract layer responsible for initializing and managing `Resident` agents during the simulation.
-- `VectorAirportsLayer`: A vector layer holding `Airport` features.
+- `VectorAirportsLayer`: A vector layer that holds `Airport` features.
   - `Airport`: A point feature representing an airport.
-- `VectorLandfillLayer`: A vector layer holding landfill features.
-- `VectorPoiLayer`: A vector layer holding various vector-based points of interest (POIs).
-- `VectorWaterLayer`: A vector layer holding `River` features.
+- `VectorLandfillLayer`: A vector layer that holds landfill features.
+- `VectorPoiLayer`: A vector layer that holds various vector-based points of interest (POIs).
+- `VectorWaterLayer`: A vector layer that holds `River` features.
   - `River`: A line feature representing a river.
 - `SpatialGraphMediatorLayer`: A vector layer that holds a travel network for pedestrian and vehicle travel.
-- `CarParkingLayer`: A vector layer holding parking spaces for vehicles.
+- `CarParkingLayer`: A vector layer that holds parking spaces for vehicles.
 
 ### Agent Type
 
